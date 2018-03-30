@@ -1,0 +1,36 @@
+package com.bytebuilding.opengl.utils
+
+import android.content.Context
+import android.content.res.Resources
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
+
+
+fun readTextFromRaw(context: Context,
+                    resId: Int): String {
+    val stringBuilder = StringBuilder()
+    try {
+        var bufferedReader: BufferedReader? = null
+        try {
+            val inputStream = context.resources.openRawResource(resId)
+            bufferedReader = BufferedReader(InputStreamReader(inputStream))
+            var line: String
+            while (bufferedReader.readLine() != null) {
+                line = bufferedReader.readLine()
+                stringBuilder.append(line)
+                stringBuilder.append("\r\n")
+            }
+        } finally {
+            if (bufferedReader != null) {
+                bufferedReader.close()
+            }
+        }
+    } catch (ioe: IOException) {
+        ioe.printStackTrace()
+    } catch (nfe: Resources.NotFoundException) {
+        nfe.printStackTrace()
+    }
+
+    return stringBuilder.toString()
+}
