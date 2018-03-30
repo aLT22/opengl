@@ -1,4 +1,4 @@
-package com.bytebuilding.opengllesson1.ui.activity
+package com.bytebuilding.opengl.ui.activity
 
 import android.opengl.GLSurfaceView
 import android.os.Bundle
@@ -7,15 +7,14 @@ import com.bytebuilding.opengllesson1.R
 import android.app.ActivityManager
 import android.content.Context
 import android.widget.Toast
-import com.bytebuilding.opengllesson1.renderer.OpenGLRenderer
+import com.bytebuilding.opengl.renderer.OpenGLRenderer
+import com.bytebuilding.opengl.ui.glview.GLViewProvider
 
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
         val TAG = "MainActivity"
-
-        val EGL_CONTEXT_CLIENT_VERSION = 2
     }
 
     lateinit var mGLSurfaceView: GLSurfaceView
@@ -29,11 +28,7 @@ class MainActivity : AppCompatActivity() {
                     .show();
             finish();
             return;
-        }
-
-        mGLSurfaceView = GLSurfaceView(this)
-        mGLSurfaceView.setEGLContextClientVersion(EGL_CONTEXT_CLIENT_VERSION)
-        mGLSurfaceView.setRenderer(OpenGLRenderer())
+        } else mGLSurfaceView = GLViewProvider.provideGLView(this)
 
         setContentView(mGLSurfaceView)
     }

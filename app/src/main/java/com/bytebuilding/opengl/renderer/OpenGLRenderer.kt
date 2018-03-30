@@ -1,4 +1,4 @@
-package com.bytebuilding.opengllesson1.renderer
+package com.bytebuilding.opengl.renderer
 
 import android.opengl.GLES20.*
 import android.opengl.GLSurfaceView
