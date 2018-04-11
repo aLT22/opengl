@@ -6,16 +6,18 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 
-
-fun readTextFromRaw(context: Context,
-                    resId: Int): String {
+/**
+ * Created by Turkin A. on 30.03.2018.
+ */
+fun readFromRaw(context: Context,
+                resId: Int): String {
     val stringBuilder = StringBuilder()
     try {
         var bufferedReader: BufferedReader? = null
         try {
             val inputStream = context.resources.openRawResource(resId)
             bufferedReader = BufferedReader(InputStreamReader(inputStream))
-            var line: String
+            var line: String?
             while (bufferedReader.readLine() != null) {
                 line = bufferedReader.readLine()
                 stringBuilder.append(line)
@@ -26,10 +28,10 @@ fun readTextFromRaw(context: Context,
                 bufferedReader.close()
             }
         }
-    } catch (ioe: IOException) {
-        ioe.printStackTrace()
-    } catch (nfe: Resources.NotFoundException) {
-        nfe.printStackTrace()
+    } catch (ioex: IOException) {
+        ioex.printStackTrace()
+    } catch (nfex: Resources.NotFoundException) {
+        nfex.printStackTrace()
     }
 
     return stringBuilder.toString()

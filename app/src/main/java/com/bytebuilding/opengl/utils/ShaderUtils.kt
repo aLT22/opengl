@@ -2,13 +2,12 @@ package com.bytebuilding.opengl.utils
 
 import android.content.Context
 import android.opengl.GLES20.*
-import com.bytebuilding.opengl.utils.readTextFromRaw
 
 /**
  * Created by Turkin A. on 30.03.2018.
  */
 fun createProgram(shaderVertexId: Int,
-                 shaderFragmentId: Int): Int {
+                  shaderFragmentId: Int): Int {
     val programId = glCreateProgram()
 
     if (programId == 0) return 0
@@ -33,7 +32,8 @@ fun createProgram(shaderVertexId: Int,
 fun createShader(context: Context,
                  type: Int,
                  shaderResId: Int): Int {
-    val shaderTextFromFile = readTextFromRaw(context, shaderResId)
+
+    val shaderTextFromFile = readFromRaw(context, shaderResId)
 
     return createShader(type, shaderTextFromFile)
 }
