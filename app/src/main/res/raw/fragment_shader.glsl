@@ -1,5 +1,5 @@
 #version 120
-precision highp float;
+precision mediump float;
 uniform vec4 u_Color;
 
 void main() {
